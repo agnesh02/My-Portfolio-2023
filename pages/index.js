@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Intro from "./Intro";
 import Skills from "./skills";
 import NodeGraphSkills from "./NodeGraphSkills";
+import Contact from "./contact";
 
 const Home = function () {
   const [darkMode, setDarkMode] = useState(true);
@@ -52,6 +53,7 @@ const Home = function () {
           </nav>
           <Intro mode={darkMode} />
           <NodeGraphSkills />
+          <Contact />
         </section>
       </main>
     </div>
