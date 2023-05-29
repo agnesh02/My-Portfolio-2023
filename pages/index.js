@@ -2,13 +2,16 @@ import Head from "next/head";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Intro from "./Intro";
-import Skills from "./skills";
 import NodeGraphSkills from "./NodeGraphSkills";
 import Contact from "./contact";
+import Certificates from "./Certificates";
+import Link from "next/link";
+import MobileNav from "./MobileNav";
 
 const Home = function () {
   const [darkMode, setDarkMode] = useState(true);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const [isIntroScreenActive, setIsIntroScreenActive] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,11 +33,35 @@ const Home = function () {
       <main className="bg-white px-4 dark:bg-gray-900 lg:px-10">
         <section className="flex min-h-screen flex-col justify-between">
           <nav className="mb-12 flex justify-between py-10 ">
-            <h1 className=" font-poppins_semi_bold text-xl dark:text-white">
-              My Portfolio
-            </h1>
+            <div className="flex w-1/2 flex-row  text-center">
+              {!isLargeScreen && (
+                <MobileNav setIsActive={setIsIntroScreenActive} />
+              )}
+              <button
+                className="ml-12 text-start font-poppins_semi_bold text-xl dark:text-white lg:ml-0"
+                onClick={() => {
+                  setIsIntroScreenActive(true);
+                }}
+              >
+                My Portfolio
+              </button>
+              {isLargeScreen && (
+                <ul className=" ml-10 flex w-60 flex-row justify-evenly dark:text-white">
+                  <li className="text-x font-poppins_semi_bold dark:text-white">
+                    <button onClick={() => setIsIntroScreenActive(false)}>
+                      Certificates
+                    </button>
+                  </li>
+                  <li className="text-x font-poppins_semi_bold dark:text-white">
+                    <button onClick={() => setIsIntroScreenActive(false)}>
+                      Projects
+                    </button>
+                  </li>
+                </ul>
+              )}
+            </div>
             <ul className=" flex items-center dark:text-white">
-              <li className=" text-2xl lg:text-3xl">
+              <li className="text-2xl lg:text-3xl">
                 {darkMode ? (
                   <FaSun onClick={() => setDarkMode(!darkMode)} />
                 ) : (
@@ -51,9 +78,10 @@ const Home = function () {
               </li>
             </ul>
           </nav>
-          <Intro mode={darkMode} />
-          <NodeGraphSkills />
-          <Contact />
+          {isIntroScreenActive && <Intro mode={darkMode} />}
+          {isIntroScreenActive && <NodeGraphSkills />}
+          {isIntroScreenActive && <Contact />}
+          {!isIntroScreenActive && <Certificates />}
         </section>
       </main>
     </div>

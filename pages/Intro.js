@@ -3,7 +3,6 @@ import { DiReact, DiAndroid } from "react-icons/di";
 import Image from "next/image";
 import devImg from "../public/devImg.png";
 import { useEffect, useState } from "react";
-import NodeGraphSkills from "./NodeGraphSkills";
 import AdditionalInfo from "./AdditionalInfo";
 
 const Intro = function ({ darkMode }) {
@@ -18,6 +17,14 @@ const Intro = function ({ darkMode }) {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const gotToGithub = () => {
+    window.open("https://github.com/agnesh02");
+  };
+
+  const gotToLinkedin = () => {
+    window.open("https://www.linkedin.com/in/agnesh2002");
+  };
 
   return (
     <div className={mode ? "dark" : ""}>
@@ -48,9 +55,15 @@ const Intro = function ({ darkMode }) {
             <h1></h1>
           </div>
           <div className=" mt mb-14 flex justify-center gap-7 text-5xl dark:text-white lg:mb-5">
-            <FaInstagram />
-            <FaGithub />
-            <FaLinkedin />
+            <button>
+              <FaInstagram />
+            </button>
+            <button>
+              <FaGithub onClick={() => gotToGithub()} />
+            </button>
+            <button>
+              <FaLinkedin onClick={() => gotToLinkedin()}  />
+            </button>
           </div>
         </section>
 
