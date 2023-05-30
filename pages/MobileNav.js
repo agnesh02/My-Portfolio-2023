@@ -1,6 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import AppContext from "../state/AppContext";
+import { pages } from "../state/AppProvider";
 
-const MobileNav = ({ setIsActive }) => {
+const MobileNav = () => {
+  const { currentPage, setCurrentPage } = useContext(AppContext);
+
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -56,7 +60,7 @@ const MobileNav = ({ setIsActive }) => {
               <li
                 className={itemStyle}
                 onClick={() => {
-                  setIsActive(true);
+                  setCurrentPage(pages.home);
                 }}
               >
                 Home
@@ -64,13 +68,19 @@ const MobileNav = ({ setIsActive }) => {
               <li
                 className={itemStyle}
                 onClick={() => {
-                  setIsActive(false);
+                  setCurrentPage(pages.certificates);
                 }}
               >
                 Certificates
               </li>
               <li className={itemStyle}>
-                <button onClick={() => {}}>Projects</button>
+                <button
+                  onClick={() => {
+                    setCurrentPage(pages.projects);
+                  }}
+                >
+                  Projects
+                </button>
               </li>
             </ul>
           </div>

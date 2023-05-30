@@ -1,26 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TbBrandNextjs } from "react-icons/tb";
 import { SiFirebase, SiTailwindcss, SiVisualstudiocode } from "react-icons/si";
 
 const AdditionalInfo = function () {
-  const [darkMode, setDarkMode] = useState(true);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   return (
     <div>
       <div
         className="flex justify-center"
         style={{ width: "100%", marginTop: -10 }}
       >
-        <h3 className=" mb-12 text-center mt-10 flex flex-col items-center py-2 text-2xl font-semibold text-gray-800 dark:text-white sm:justify-start lg:flex-row lg:justify-center">
+        <h3 className=" mb-12 mt-10 flex flex-col items-center py-2 text-center text-2xl font-semibold text-gray-800 dark:text-white sm:justify-start lg:flex-row lg:justify-center">
           <span className="text-blue-600 dark:text-orange-500">
             Technologies used to develop this website
           </span>

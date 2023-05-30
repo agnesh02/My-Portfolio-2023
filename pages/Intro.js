@@ -2,21 +2,13 @@ import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { DiReact, DiAndroid } from "react-icons/di";
 import Image from "next/image";
 import devImg from "../public/devImg.png";
-import { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import AdditionalInfo from "./AdditionalInfo";
+import AppContext from "../state/AppContext";
 
-const Intro = function ({ darkMode }) {
-  let mode = darkMode;
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+const Intro = function () {
+  const { darkMode, setDarkMode, isLargeScreen, setIsLargeScreen } =
+    useContext(AppContext);
 
   const gotToGithub = () => {
     window.open("https://github.com/agnesh02");
@@ -27,7 +19,7 @@ const Intro = function ({ darkMode }) {
   };
 
   return (
-    <div className={mode ? "dark" : ""}>
+    <div className={darkMode ? "dark" : ""}>
       <main className="bg-white px-4 dark:bg-gray-900 lg:px-10">
         <section>
           <div className=" lg:flex lg:justify-end lg:gap-32">
@@ -62,7 +54,7 @@ const Intro = function ({ darkMode }) {
               <FaGithub onClick={() => gotToGithub()} />
             </button>
             <button>
-              <FaLinkedin onClick={() => gotToLinkedin()}  />
+              <FaLinkedin onClick={() => gotToLinkedin()} />
             </button>
           </div>
         </section>

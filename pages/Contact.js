@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Contact = function () {
-  const [darkMode, setDarkMode] = useState(true);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   return (
     <section className="min-h-screen">
       <div className=" mx-auto mt-32 max-w-[700px] rounded-3xl px-5 py-10 dark:bg-white lg:px-10">
         <h2 className=" mb-12 font-poppins_medium text-3xl font-bold">
-          Contact Me
+          Contact
         </h2>
         <form>
           <div className="form-group mb-6">
