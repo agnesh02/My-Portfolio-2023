@@ -27,7 +27,7 @@ const MobileNav = () => {
   };
 
   const itemStyle =
-    "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium font-poppins_light";
+    "text-gray-300 hover:bg-gray-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium font-poppins_light";
 
   return (
     <div>
@@ -58,6 +58,11 @@ const MobileNav = () => {
           <div className="mt-14 text-left">
             <ul>
               <li
+                style={
+                  currentPage == pages.home
+                    ? { backgroundColor: "rgb(75 85 99)" }
+                    : { backgroundColor: "rgb(31 41 55)" }
+                }
                 className={itemStyle}
                 onClick={() => {
                   setCurrentPage(pages.home);
@@ -66,6 +71,11 @@ const MobileNav = () => {
                 Home
               </li>
               <li
+                style={
+                  currentPage == pages.certificates
+                    ? { backgroundColor: "rgb(75 85 99)" }
+                    : { backgroundColor: "rgb(31 41 55)" }
+                }
                 className={itemStyle}
                 onClick={() => {
                   setCurrentPage(pages.certificates);
@@ -73,14 +83,18 @@ const MobileNav = () => {
               >
                 Certificates
               </li>
-              <li className={itemStyle}>
-                <button
-                  onClick={() => {
-                    setCurrentPage(pages.projects);
-                  }}
-                >
-                  Projects
-                </button>
+              <li
+                style={
+                  currentPage == pages.projects
+                    ? { backgroundColor: "rgb(75 85 99)" }
+                    : { backgroundColor: "rgb(31 41 55)" }
+                }
+                className={itemStyle}
+                onClick={() => {
+                  setCurrentPage(pages.projects);
+                }}
+              >
+                Projects
               </li>
             </ul>
           </div>
