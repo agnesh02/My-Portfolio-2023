@@ -27,8 +27,8 @@ const AdditionalInfo = function () {
         </div>
         <div className="w-10"></div>
         <div className="h-40 w-48 rounded-full bg-orange-500 py-4 px-4 shadow-lg hover:text-white">
-          <div className="flex justify-center text-8xl">
-            <SiTailwindcss />
+          <div className="flex justify-center lg:mt-3">
+            <SiTailwindcss size={75} />
           </div>
           <h2 className="text-center font-poppins_semi_bold text-xl font-bold">
             Tailwind CSS
@@ -38,8 +38,8 @@ const AdditionalInfo = function () {
       <div style={{ marginTop: 25 }}></div>
       <div className="flex flex-row justify-center">
         <div className="h-40 w-48 rounded-full bg-orange-500 py-4 px-4 shadow-lg hover:text-white">
-          <div className="flex justify-center text-8xl">
-            <SiFirebase />
+          <div className="flex justify-center mt-2">
+            <SiFirebase  size={90}/>
           </div>
           <h2 className="text-center font-poppins_semi_bold text-xl font-bold">
             Firebase
@@ -47,8 +47,8 @@ const AdditionalInfo = function () {
         </div>
         <div className="w-10"></div>
         <div className="h-40 w-48 rounded-full bg-orange-500 py-4 px-4 shadow-lg hover:text-white">
-          <div className="flex justify-center text-8xl">
-            <SiVisualstudiocode />
+          <div className="flex justify-center mt-2">
+            <SiVisualstudiocode size={90} />
           </div>
           <h2 className="text-center font-poppins_semi_bold text-xl font-bold">
             VS Code

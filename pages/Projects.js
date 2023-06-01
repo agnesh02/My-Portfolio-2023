@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // Replace the following data with your own project data
 const projects = [
@@ -96,16 +96,27 @@ const projects = [
   },
 ];
 
+const getTechnologyImageUrl = function (technologyUsed) {
+  const images = {
+    firebase: require("../public/assets/firebase_img.png"),
+    android: require("../public/assets/android_img.png"),
+    mySql: require("../public/assets/mySql_img.png"),
+    html: require("../public/assets/html_img.png"),
+    css: require("../public/assets/css_img.png"),
+    php: require("../public/assets/php_img.png"),
+    ajax: require("../public/assets/ajax_img.png"),
+    python: require("../public/assets/python_img.png"),
+  };
+
+  return images[technologyUsed];
+};
+
 const Projects = () => {
   const [currentProject, setCurrentProject] = useState(projects[0]);
   const [technologyUsed, setTechnologyUsed] = useState({
     name: currentProject.technologiesUsed[0],
-    image: undefined,
+    image: getTechnologyImageUrl(currentProject.technologiesUsed[0]),
   });
-
-  useEffect(() => {
-    console.log(technologyUsed);
-  }, [technologyUsed]);
 
   const handlePrev = () => {
     const currentIndex = projects.findIndex(
@@ -113,6 +124,10 @@ const Projects = () => {
     );
     const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
     setCurrentProject(projects[prevIndex]);
+    setTechnologyUsed({
+      name: projects[prevIndex].technologiesUsed[0],
+      image: getTechnologyImageUrl(projects[prevIndex].technologiesUsed[0]),
+    });
   };
 
   const handleNext = () => {
@@ -121,6 +136,10 @@ const Projects = () => {
     );
     const nextIndex = (currentIndex + 1) % projects.length;
     setCurrentProject(projects[nextIndex]);
+    setTechnologyUsed({
+      name: projects[nextIndex].technologiesUsed[0],
+      image: getTechnologyImageUrl(projects[nextIndex].technologiesUsed[0]),
+    });
   };
 
   const handlePrevTechnology = () => {
@@ -132,39 +151,23 @@ const Projects = () => {
       currentProject.technologiesUsed.length;
     setTechnologyUsed({
       name: currentProject.technologiesUsed[prevIndex],
-      image: undefined,
+      image: getTechnologyImageUrl(currentProject.technologiesUsed[prevIndex]),
     });
-    getTechnologyImageUrl(currentProject.technologiesUsed[prevIndex]);
   };
 
   const handleNextTechnology = () => {
     const currentIndex = currentProject.technologiesUsed.findIndex(
       (technology) => technology === technologyUsed.name
     );
+    console.log(`current ${currentProject.technologiesUsed[currentIndex]}`);
+
     const nextIndex =
       (currentIndex + 1) % currentProject.technologiesUsed.length;
+    console.log(`next ${currentProject.technologiesUsed[nextIndex]}`);
 
     setTechnologyUsed({
       name: currentProject.technologiesUsed[nextIndex],
-      image: undefined,
-    });
-    getTechnologyImageUrl(currentProject.technologiesUsed[nextIndex]);
-  };
-
-  const getTechnologyImageUrl = function (technologyName) {
-    const images = {
-      firebase: require("../public/assets/firebase_img.png"),
-      android: require("../public/assets/android_img.png"),
-      mySql: require("../public/assets/mySql_img.png"),
-      html: require("../public/assets/html_img.png"),
-      css: require("../public/assets/css_img.png"),
-      php: require("../public/assets/php_img.png"),
-      ajax: require("../public/assets/ajax_img.png"),
-      python: require("../public/assets/python_img.png"),
-    };
-    setTechnologyUsed({
-      name: technologyName,
-      image: images[technologyUsed.name],
+      image: getTechnologyImageUrl(currentProject.technologiesUsed[nextIndex]),
     });
   };
 

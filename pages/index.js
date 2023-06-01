@@ -29,6 +29,32 @@ const Home = function () {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const downloadResume = function () {
+    // fetch(
+    //   "../public/assets/cloud_college.png"
+    // ) // Replace 'path_to_your_file' with the actual file URL
+    //   .then((response) => response.blob())
+    //   .then((blob) => {
+    //     saveAs(blob, "Resume_Agnesh.pdf"); // Replace 'filename.ext' with the desired file name and extension
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error downloading the file:", error);
+    //   });
+
+    const link = document.createElement("a");
+    link.href =
+      "https://drive.google.com/file/d/1okf-B-7W9KXgXtGU8aUrM7-5RGym_JCG/view?usp=sharing";
+    link.download = "resume.pdf"; // Specify the desired file name
+
+    link.dispatchEvent(
+      new MouseEvent("click", {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+      })
+    );
+  };
+
   return (
     <div className={darkMode ? "dark" : ""} style={{ height: 100 }}>
       <Head>
@@ -74,9 +100,20 @@ const Home = function () {
                 )}
               </li>
               <li>
-                <a
+                {/* <a
                   className=" ml-8 rounded-lg bg-gradient-to-r from-violet-500 to-purple-500 px-4 py-2 text-white hover:from-red-600 hover:to-red-500"
-                  href="#"
+                  href="https://drive.google.com/uc?id=1okf-B-7W9KXgXtGU8aUrM7-5RGym_JCG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download File
+                </a> */}
+
+                <a
+                  className=" ml-8 cursor-pointer rounded-lg bg-gradient-to-r from-violet-500 to-purple-500 px-4 py-2 text-white hover:from-red-600 hover:to-red-500"
+                  onClick={() => {
+                    downloadResume();
+                  }}
                 >
                   Resume
                 </a>
