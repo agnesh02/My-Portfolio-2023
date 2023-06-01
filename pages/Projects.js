@@ -221,7 +221,7 @@ const Projects = () => {
         </h3>
         <ul>
           {currentProject.features.map((feature, index) => (
-            <li className="text-gray-600 dark:text-white">
+            <li className="text-gray-600 dark:text-white font-poppins_light">
               {index + 1}. {feature}
             </li>
           ))}
