@@ -10,6 +10,10 @@ const Intro = function () {
   const { darkMode, setDarkMode, isLargeScreen, setIsLargeScreen } =
     useContext(AppContext);
 
+  const goToInstagram = () => {
+    window.open("https://instagram.com/agnesh.05?igshid=MzNlNGNkZWQ4Mg==");
+  };
+
   const gotToGithub = () => {
     window.open("https://github.com/agnesh02");
   };
@@ -48,7 +52,7 @@ const Intro = function () {
           </div>
           <div className=" mt mb-14 flex justify-center gap-7 text-5xl dark:text-white lg:mb-5">
             <button>
-              <FaInstagram />
+              <FaInstagram onClick={() => goToInstagram()} />
             </button>
             <button>
               <FaGithub onClick={() => gotToGithub()} />
