@@ -3,7 +3,7 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { useContext, useEffect } from "react";
 import Intro from "./Intro";
 import NodeGraphSkills from "./NodeGraphSkills";
-import Contact from "./contact";
+import Contact from "./Contact";
 import Certificates from "./Certificates";
 import MobileNav from "./MobileNav";
 import Projects from "./Projects";
