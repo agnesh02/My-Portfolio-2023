@@ -1,5 +1,5 @@
 import React from "react";
-import firestore from "./Backend";
+import {firestore} from "./Backend";
 import { setDoc, doc } from "firebase/firestore";
 
 const Contact = function () {
