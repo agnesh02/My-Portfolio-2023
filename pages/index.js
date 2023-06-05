@@ -3,12 +3,13 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { useContext, useEffect } from "react";
 import Intro from "./Intro";
 import NodeGraphSkills from "./NodeGraphSkills";
-import Contact from "./Contact";
 import Certificates from "./Certificates";
 import MobileNav from "./MobileNav";
 import Projects from "./Projects";
 import AppContext from "../state/AppContext";
 import { pages } from "../state/AppProvider";
+import SkillsSection from "./SkillsSection";
+import Contact from "./Contact";
 
 const Home = function () {
   const {
@@ -122,6 +123,7 @@ const Home = function () {
           </nav>
           {currentPage == pages.home && <Intro />}
           {currentPage == pages.home && <NodeGraphSkills />}
+          {currentPage == pages.home && <SkillsSection />}
           {currentPage == pages.home && <Contact />}
           {currentPage == pages.certificates && <Certificates />}
           {currentPage == pages.projects && <Projects />}
