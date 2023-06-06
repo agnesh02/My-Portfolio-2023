@@ -14,9 +14,10 @@ const Contact = function () {
     };
   };
 
-  const sendData = async () => {
+  const sendData = async function () {
     const { name, email, msg } = obtainInformation();
-    // alert(`${name} | ${email} | ${msg}`);
+    alert("Please wait...");
+
     await setDoc(doc(firestore, "Users", email), {
       name: name,
       email_id: email,
@@ -32,8 +33,6 @@ const Contact = function () {
           "Oops..some error occurred while submitting your response. Please try again :( ."
         );
       });
-
-    alert('Ok')
   };
 
   return (
