@@ -1,5 +1,5 @@
 import React from "react";
-import {firestore} from "./Backend";
+import { firestore } from "./Backend";
 import { setDoc, doc } from "firebase/firestore";
 
 const Contact = function () {
@@ -16,15 +16,21 @@ const Contact = function () {
 
   const sendData = async () => {
     const { name, email, msg } = obtainInformation();
+    alert(`${name} | ${email} | ${msg}`);
     try {
       await setDoc(doc(firestore, "Users", email), {
         name: name,
         email_id: email,
         message: msg,
-      });
-      alert(
-        `Hey ${name},\nYour response was recorded successfully. I will get back to you :)`
-      );
+      })
+        .then(() => {
+          alert(
+            `Hey ${name},\nYour response was recorded successfully. I will get back to you :)`
+          );
+        })
+        .catch((e) => {
+          alert(`${e}`);
+        });
     } catch (e) {
       alert(
         "Oops..some error occurred while submitting your response. Please try again :( ."
