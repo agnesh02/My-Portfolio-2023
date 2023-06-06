@@ -16,27 +16,24 @@ const Contact = function () {
 
   const sendData = async () => {
     const { name, email, msg } = obtainInformation();
-    alert(`${name} | ${email} | ${msg}`);
-    try {
-      await setDoc(doc(firestore, "Users", email), {
-        name: name,
-        email_id: email,
-        message: msg,
+    // alert(`${name} | ${email} | ${msg}`);
+    await setDoc(doc(firestore, "Users", email), {
+      name: name,
+      email_id: email,
+      message: msg,
+    })
+      .then(() => {
+        alert(
+          `Hey ${name},\nYour response was recorded successfully. I will get back to you :)`
+        );
       })
-        .then(() => {
-          alert(
-            `Hey ${name},\nYour response was recorded successfully. I will get back to you :)`
-          );
-        })
-        .catch((e) => {
-          alert(`${e}`);
-        });
-    } catch (e) {
-      alert(
-        "Oops..some error occurred while submitting your response. Please try again :( ."
-      );
-      console.error("Error adding document: ", e);
-    }
+      .catch((e) => {
+        alert(
+          "Oops..some error occurred while submitting your response. Please try again :( ."
+        );
+      });
+
+    alert('Ok')
   };
 
   return (
@@ -45,39 +42,37 @@ const Contact = function () {
         <h2 className=" mb-12 font-poppins_medium text-3xl font-bold">
           Contact
         </h2>
-        <form>
-          <div className="form-group mb-6">
-            <input
-              type="text"
-              className="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-              id="nameInput"
-              placeholder="Name"
-            />
-          </div>
-          <div className="form-group mb-6">
-            <input
-              type="email"
-              className="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-              id="emailInput"
-              placeholder="Email address"
-            />
-          </div>
-          <div className="form-group mb-6">
-            <textarea
-              className=" form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-              id="messageInput"
-              rows="3"
-              placeholder="Message"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className=" w-full rounded-md bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-            onClick={() => sendData()}
-          >
-            Send
-          </button>
-        </form>
+        <div className="form-group mb-6">
+          <input
+            type="text"
+            className="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+            id="nameInput"
+            placeholder="Name"
+          />
+        </div>
+        <div className="form-group mb-6">
+          <input
+            type="email"
+            className="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+            id="emailInput"
+            placeholder="Email address"
+          />
+        </div>
+        <div className="form-group mb-6">
+          <textarea
+            className=" form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+            id="messageInput"
+            rows="3"
+            placeholder="Message"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          className=" w-full rounded-md bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+          onClick={() => sendData()}
+        >
+          Send
+        </button>
       </div>
     </section>
   );
