@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
 
-// Replace the following data with your own project data
 const projects = [
   {
     id: 1,
@@ -94,6 +93,112 @@ const projects = [
     imageUrl: require("../public/assets/blend_app.png"),
     technologiesUsed: ["android", "firebase"],
   },
+  {
+    id: 6,
+    title: "More Projects",
+    description:
+      "In addition to the above projects, there are several other projects available in my resume, including cross-platform mobile apps, BLE sensor interactions, financial tracking, and augmented reality apps. Please refer to my resume for a detailed list of all projects and their descriptions.",
+    features: [
+      "Cross-platform mobile apps using Flutter and React Native",
+      "Real-time BLE sensor data updates",
+      "Automatic data syncing",
+      "Augmented reality app for trying on nail designs real-time",
+      "Integration with external APIs and SDKs like Spotify and YouTube",
+    ],
+    imageUrl: require("../public/devImg.png"), // Replace with your own image
+    technologiesUsed: [
+      "ble",
+      "flutter",
+      "reactNative",
+      "android",
+      "firebase",
+      "mqtt",
+      "snapAr",
+    ],
+  },
+  // {
+  //   id: 6,
+  //   title: "BLE Sensor App (Flutter)",
+  //   description:
+  //     "Developed a cross-platform mobile app with Flutter for BLE sensor interaction using the Modbus protocol and MQTT. Key features include real-time sensor data updates, automatic data syncing, Modbus coil and register management, and file operations. Integrated MQTT communication, used MVVM architecture, and implemented data persistence with SQFLite, networking with Dio, and Firebase integration.",
+  //   features: [
+  //     "Real-time sensor data updates",
+  //     "Automatic data syncing",
+  //     "Modbus coil and register management",
+  //     "File operations",
+  //     "MQTT communication",
+  //     "MVVM architecture",
+  //     "Data persistence with SQFLite",
+  //     "Networking with Dio",
+  //     "Firebase integration",
+  //   ],
+  //   imageUrl: require("../public/assets/ble_sensor_app.png"),
+  //   technologiesUsed: ["flutter", "mqtt", "sqflite", "dio", "firebase"],
+  // },
+  // {
+  //   id: 7,
+  //   title: "Water Pressure Monitoring App (React Native)",
+  //   description:
+  //     "Developed a cross-platform mobile app with React Native for BLE sensor and range extender interaction. Key features include real-time water pressure readings (PSI, GPM), data recording and export to xlsx, device calibration, firmware updates, and residual/differential pressure monitoring. Integrated SQLite for data persistence and used fetch for API calls.",
+  //   features: [
+  //     "Real-time water pressure readings (PSI, GPM)",
+  //     "Data recording and export to xlsx",
+  //     "Device calibration",
+  //     "Firmware updates",
+  //     "Residual/differential pressure monitoring",
+  //     "SQLite data persistence",
+  //     "API calls using fetch",
+  //   ],
+  //   imageUrl: require("../public/assets/water_pressure_monitoring.png"),
+  //   technologiesUsed: ["react-native", "sqlite", "fetch", "mqtt"],
+  // },
+  // {
+  //   id: 8,
+  //   title: "BLE and Weather App (Android PoC)",
+  //   description:
+  //     "Developed native Android apps as two PoCs in Java and Kotlin, featuring BLE interaction, displaying a live streaming source, API calls, and standard UI designs with XML. Implemented MVVM architecture with clean code and coroutines, integrated RoomDB for data persistence, and used Retrofit for networking. Integrated Firebase for authentication and data storage. Additionally, implemented side navigation, weather API calls (current and forecast), user profile management, and media receiving with saving to local storage.",
+  //   features: [
+  //     "BLE interaction and live streaming source display",
+  //     "API calls for weather (current and forecast)",
+  //     "RoomDB for data persistence",
+  //     "Retrofit for networking",
+  //     "Firebase for authentication and data storage",
+  //     "Side navigation implementation",
+  //     "User profile management",
+  //     "Media receiving and saving to local storage",
+  //   ],
+  //   imageUrl: require("../public/assets/ble_weather_app.png"),
+  //   technologiesUsed: ["android", "java", "kotlin", "retrofit", "firebase"],
+  // },
+  // {
+  //   id: 9,
+  //   title: "Nail Design App (Android PoC)",
+  //   description:
+  //     "Developed a native Android app as a PoC for trying on nail designs and colors in real-time using augmented reality. Built with XML-based UI, MVVM architecture, and clean code practices. Integrated Snap SDK for AR and used Retrofit for networking. Optimized for smooth performance and user-friendly interactions.",
+  //   features: [
+  //     "Real-time AR-based nail design trials",
+  //     "MVVM architecture",
+  //     "Snap SDK for AR integration",
+  //     "Retrofit for networking",
+  //     "Smooth performance and user-friendly interface",
+  //   ],
+  //   imageUrl: require("../public/assets/nail_design_app.png"),
+  //   technologiesUsed: ["android", "ar", "snap-sdk", "retrofit"],
+  // },
+  // {
+  //   id: 10,
+  //   title: "Spotify & YouTube Integration App (Android PoC)",
+  //   description:
+  //     "Developed a native Android app as a PoC integrating features from Spotify and YouTube using their official SDKs. Implemented MVVM architecture, clean code, authentication, playback functionalities, and other key features.",
+  //   features: [
+  //     "Spotify and YouTube integration",
+  //     "MVVM architecture",
+  //     "Authentication",
+  //     "Playback functionalities",
+  //   ],
+  //   imageUrl: require("../public/assets/spotify_youtube_integration.png"),
+  //   technologiesUsed: ["android", "spotify-sdk", "youtube-sdk", "mvvm"],
+  // },
 ];
 
 const getTechnologyImageUrl = function (technologyUsed) {
@@ -106,6 +211,11 @@ const getTechnologyImageUrl = function (technologyUsed) {
     php: require("../public/assets/php_img.png"),
     ajax: require("../public/assets/ajax_img.png"),
     python: require("../public/assets/python_img.png"),
+    flutter: require("../public/assets/flutter.png"),
+    reactNative: require("../public/assets/react.png"),
+    mqtt: require("../public/assets/mqtt_ver.png"),
+    snapAr: require("../public/assets/snap_ar.png"),
+    ble: require("../public/assets/ble.png"),
   };
 
   return images[technologyUsed];
@@ -178,31 +288,25 @@ const Projects = () => {
 
   return (
     <div
-      className="flex min-h-screen flex-col items-start"
+      className="flex min-h-screen flex-col items-start p-3"
       style={{ marginTop: -50 }}
     >
-      <div className="flex min-w-full flex-row justify-between align-middle">
+      <div className="flex min-w-full flex-row items-center justify-between py-6">
         <div className="flex flex-col justify-center">
           <button
             onClick={() => handlePrev()}
-            className="h-10 rounded-full bg-gray-500 p-2 text-white hover:bg-gray-700"
+            className="h-12 w-12 transform rounded-full bg-indigo-600 text-xl text-white shadow-md transition-all duration-300 hover:scale-110 hover:bg-indigo-800"
           >
             &lt;
           </button>
         </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
+        <div className="flex w-full justify-center">
           <div
-            className="relative flex h-[500px] w-full items-center justify-center" // Make sure the container takes the full space
+            className="relative flex h-[500px] w-full items-center justify-center rounded-lg"
             style={{ marginTop: -50 }}
           >
             {loadingImage && (
-              <div className="absolute flex h-full w-full items-center justify-center bg-white bg-opacity-50">
+              <div className="absolute flex h-full w-full items-center justify-center bg-opacity-50">
                 <svg
                   className="h-20 w-20 animate-spin text-blue-500"
                   xmlns="http://www.w3.org/2000/svg"
@@ -227,7 +331,12 @@ const Projects = () => {
               </div>
             )}
             <Image
-              style={{ width: "1000px", height: "500px", objectFit: "contain" }}
+              style={{
+                width: "1000px",
+                height: "500px",
+                objectFit: "contain",
+                borderRadius: "16px",
+              }}
               src={currentProject.imageUrl}
               alt={currentProject.title}
               className="w-full rounded-lg object-cover"
@@ -238,98 +347,93 @@ const Projects = () => {
         <div className="flex flex-col justify-center">
           <button
             onClick={() => handleNext()}
-            className="h-10 rounded-full bg-gray-500 p-2 text-white hover:bg-gray-700"
+            className="h-12 w-12 transform rounded-full bg-indigo-600 text-xl text-white shadow-md transition-all duration-300 hover:scale-110 hover:bg-indigo-800"
           >
             &gt;
           </button>
         </div>
       </div>
-      <div className="mt-4" style={{ width: "98%" }}>
-        <h2 className="font-poppins_semi_bold text-2xl font-bold dark:text-white">
-          {currentProject.title}
-        </h2>
-        <p className="mt-5 inline-block text-justify font-poppins_medium text-gray-600 dark:text-white">
-          {currentProject.description}
-        </p>
-        <h3 className="mt-5 font-poppins_regular text-gray-600 underline dark:text-white">
-          Features
-        </h3>
-        <ul>
+
+      <div className="mx-auto mt-8 max-w-3xl text-start text-white">
+        <h2 className="mb-4 text-3xl font-bold">{currentProject.title}</h2>
+        <p className="mb-6 text-lg">{currentProject.description}</p>
+
+        <h3 className="mb-4 text-xl font-semibold">Features</h3>
+        <ul className="mx-auto space-y-4 text-left text-lg">
           {currentProject.features.map((feature, index) => (
-            <li
-              key={index}
-              className="font-poppins_light text-gray-600 dark:text-white"
-            >
-              {index + 1}. {feature}
+            <li key={index} className="flex items-center space-x-3">
+              <svg
+                className="h-6 w-6 flex-shrink-0 text-green-400 sm:h-8 sm:w-8 md:h-10 md:w-10" // Prevents shrinking on smaller screens
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span>{feature}</span>
             </li>
           ))}
         </ul>
-        <h3 className="mt-5 font-poppins_regular text-gray-600 underline dark:text-white">
-          Technologies Used
-        </h3>
 
-        <div className="mb-10 flex min-w-full flex-row justify-between align-middle">
-          <div className="flex flex-col justify-center">
+        <h3 className="mt-8 mb-4 text-xl font-semibold">Technologies Used</h3>
+        <div className="flex items-center justify-center pb-5 pt-3">
+          <div className="flex items-center justify-between">
             <button
               onClick={() => handlePrevTechnology()}
-              className="h-10 rounded-full bg-gray-500 p-2 text-white hover:bg-gray-700"
+              className="h-12 w-12 transform rounded-full bg-indigo-600 text-xl text-white shadow-md transition-all duration-300 hover:scale-110 hover:bg-indigo-800"
             >
               &lt;
             </button>
-          </div>
-          <div
-            style={{
-              width: "40%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-            className="relative"
-          >
-            {loadingTechImage && (
-              <div className="absolute flex h-full w-full items-center justify-center bg-white bg-opacity-50">
-                <svg
-                  className="h-8 w-8 animate-spin text-blue-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
+            <div className="relative flex w-full justify-center">
+              {loadingTechImage && (
+                <div className="absolute flex h-full w-full items-center justify-center bg-opacity-50">
+                  <svg
+                    className="h-8 w-8 animate-spin text-blue-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
                     stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 0116 0"
-                  />
-                </svg>
-              </div>
-            )}
-            <Image
-              style={{
-                width: "300px",
-                height: "100px",
-                objectFit: "contain",
-                marginTop: 10,
-                backgroundColor: "white",
-                borderRadius: 16,
-                padding: 20,
-              }}
-              src={technologyUsed.image}
-              alt={technologyUsed.name}
-              className="w-full rounded-lg object-cover"
-              onLoadingComplete={() => setLoadingTechImage(false)}
-            />
-          </div>
-          <div className="flex flex-col justify-center">
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 0116 0"
+                    />
+                  </svg>
+                </div>
+              )}
+              <Image
+                style={{
+                  width: "200px",
+                  height: "70px",
+                  objectFit: "contain",
+                  backgroundColor: "white",
+                  borderRadius: "16px",
+                  padding: "15px",
+                }}
+                src={technologyUsed.image}
+                alt={technologyUsed.name}
+                className="w-full rounded-lg object-cover"
+                onLoadingComplete={() => setLoadingTechImage(false)}
+              />
+            </div>
             <button
               onClick={() => handleNextTechnology()}
-              className="h-10 rounded-full bg-gray-500 p-2 text-white hover:bg-gray-700"
+              className="h-12 w-12 transform rounded-full bg-indigo-600 text-xl text-white shadow-md transition-all duration-300 hover:scale-110 hover:bg-indigo-800"
             >
               &gt;
             </button>
