@@ -117,6 +117,8 @@ const Projects = () => {
     name: currentProject.technologiesUsed[0],
     image: getTechnologyImageUrl(currentProject.technologiesUsed[0]),
   });
+  const [loadingImage, setLoadingImage] = useState(true);
+  const [loadingTechImage, setLoadingTechImage] = useState(true);
 
   const handlePrev = () => {
     const currentIndex = projects.findIndex(
@@ -124,10 +126,12 @@ const Projects = () => {
     );
     const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
     setCurrentProject(projects[prevIndex]);
+    setLoadingImage(true); // Trigger loading for new project
     setTechnologyUsed({
       name: projects[prevIndex].technologiesUsed[0],
       image: getTechnologyImageUrl(projects[prevIndex].technologiesUsed[0]),
     });
+    setLoadingTechImage(true);
   };
 
   const handleNext = () => {
@@ -136,10 +140,12 @@ const Projects = () => {
     );
     const nextIndex = (currentIndex + 1) % projects.length;
     setCurrentProject(projects[nextIndex]);
+    setLoadingImage(true); // Trigger loading for new project
     setTechnologyUsed({
       name: projects[nextIndex].technologiesUsed[0],
       image: getTechnologyImageUrl(projects[nextIndex].technologiesUsed[0]),
     });
+    setLoadingTechImage(true);
   };
 
   const handlePrevTechnology = () => {
@@ -153,22 +159,20 @@ const Projects = () => {
       name: currentProject.technologiesUsed[prevIndex],
       image: getTechnologyImageUrl(currentProject.technologiesUsed[prevIndex]),
     });
+    setLoadingTechImage(true);
   };
 
   const handleNextTechnology = () => {
     const currentIndex = currentProject.technologiesUsed.findIndex(
       (technology) => technology === technologyUsed.name
     );
-    console.log(`current ${currentProject.technologiesUsed[currentIndex]}`);
-
     const nextIndex =
       (currentIndex + 1) % currentProject.technologiesUsed.length;
-    console.log(`next ${currentProject.technologiesUsed[nextIndex]}`);
-
     setTechnologyUsed({
       name: currentProject.technologiesUsed[nextIndex],
       image: getTechnologyImageUrl(currentProject.technologiesUsed[nextIndex]),
     });
+    setLoadingTechImage(true);
   };
 
   return (
@@ -192,11 +196,37 @@ const Projects = () => {
             justifyContent: "center",
           }}
         >
+          {loadingImage && (
+            <div className="absolute flex h-[500px] w-full items-center justify-center">
+              <svg
+                className="h-20 w-20 animate-spin text-blue-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 0116 0"
+                />
+              </svg>
+            </div>
+          )}
           <Image
             style={{ width: "1000px", height: "500px", objectFit: "contain" }}
             src={currentProject.imageUrl}
             alt={currentProject.title}
             className="w-full rounded-lg object-cover"
+            onLoadingComplete={() => setLoadingImage(false)}
           />
         </div>
         <div className="flex flex-col justify-center">
@@ -208,7 +238,6 @@ const Projects = () => {
           </button>
         </div>
       </div>
-      <div className="flex items-center justify-center"></div>
       <div className="mt-4" style={{ width: "98%" }}>
         <h2 className="font-poppins_semi_bold text-2xl font-bold dark:text-white">
           {currentProject.title}
@@ -221,7 +250,10 @@ const Projects = () => {
         </h3>
         <ul>
           {currentProject.features.map((feature, index) => (
-            <li className="text-gray-600 dark:text-white font-poppins_light">
+            <li
+              key={index}
+              className="font-poppins_light text-gray-600 dark:text-white"
+            >
               {index + 1}. {feature}
             </li>
           ))}
@@ -246,6 +278,31 @@ const Projects = () => {
               justifyContent: "center",
             }}
           >
+            {loadingTechImage && (
+              <div className="absolute flex h-[500px] w-full items-center justify-center">
+                <svg
+                  className="h-8 w-8 animate-spin text-blue-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 0116 0"
+                  />
+                </svg>
+              </div>
+            )}
             <Image
               style={{
                 width: "300px",
@@ -259,8 +316,8 @@ const Projects = () => {
               src={technologyUsed.image}
               alt={technologyUsed.name}
               className="w-full rounded-lg object-cover"
+              onLoadingComplete={() => setLoadingTechImage(false)}
             />
-            {/* <p>{technologyUsed.name.toString()}</p> */}
           </div>
           <div className="flex flex-col justify-center">
             <button

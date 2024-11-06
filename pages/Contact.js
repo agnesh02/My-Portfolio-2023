@@ -1,9 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { firestore } from "./Backend";
 import { setDoc, doc } from "firebase/firestore";
+import AppContext from "../state/AppContext";
 
 const Contact = function () {
+  const { darkMode } = useContext(AppContext);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({ name: "", email: "", msg: "" });
+
+  const validateFields = (name, email, msg) => {
+    let valid = true;
+    let tempErrors = { name: "", email: "", msg: "" };
+
+    if (!name) {
+      tempErrors.name = "Name is required";
+      valid = false;
+    }
+    if (!email) {
+      tempErrors.email = "Email is required";
+      valid = false;
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      tempErrors.email = "Enter a valid email";
+      valid = false;
+    }
+    if (!msg) {
+      tempErrors.msg = "Message is required";
+      valid = false;
+    }
+
+    setErrors(tempErrors);
+    return valid;
+  };
 
   const obtainInformation = function () {
     const nameVal = document.getElementById("nameInput").value;
@@ -18,6 +45,10 @@ const Contact = function () {
 
   const sendData = async function () {
     const { name, email, msg } = obtainInformation();
+
+    // Validate before submitting
+    if (!validateFields(name, email, msg)) return;
+
     setIsSubmitting(true); // Start the submission process
 
     await setDoc(doc(firestore, "Users", email), {
@@ -40,46 +71,82 @@ const Contact = function () {
   };
 
   return (
-    <section className="h-screen">
-      <div className="mx-auto mt-32 max-w-[700px] rounded-3xl px-5 py-10 dark:bg-white lg:px-10">
-        <h2 className=" mb-12 font-poppins_medium text-3xl font-bold">
+    <section className={`h-screen ${darkMode ? "bg-gray-900" : "bg-white"}`}>
+      <div
+        className={`mx-auto mt-32 max-w-[700px] rounded-3xl px-5 py-10 ${
+          darkMode ? "bg-white" : "bg-gray-100"
+        } lg:px-10`}
+      >
+        <h2
+          className={`mb-12 font-poppins_medium text-3xl font-bold ${
+            darkMode ? "text-black" : "text-gray-900"
+          }`}
+        >
           Contact / Enquire
         </h2>
+
         <div className="form-group mb-6">
           <input
             type="text"
-            className="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+            className={`form-control m-0 block w-full rounded border border-solid ${
+              darkMode
+                ? "border-gray-500 bg-white text-black" // Darker border in dark mode
+                : "border-gray-300 bg-white text-gray-700"
+            } px-3 py-1.5 text-base transition ease-in-out focus:border-blue-600 focus:outline-none`}
             id="nameInput"
             placeholder="Name"
           />
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+          )}
         </div>
+
         <div className="form-group mb-6">
           <input
             type="email"
-            className="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+            className={`form-control m-0 block w-full rounded border border-solid ${
+              darkMode
+                ? "border-gray-500 bg-white text-black" // Darker border in dark mode
+                : "border-gray-300 bg-white text-gray-700"
+            } px-3 py-1.5 text-base transition ease-in-out focus:border-blue-600 focus:outline-none`}
             id="emailInput"
             placeholder="Email address"
           />
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+          )}
         </div>
+
         <div className="form-group mb-6">
           <textarea
-            className=" form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+            className={`form-control m-0 block w-full rounded border border-solid ${
+              darkMode
+                ? "border-gray-500 bg-white text-black" // Darker border in dark mode
+                : "border-gray-300 bg-white text-gray-700"
+            } px-3 py-1.5 text-base transition ease-in-out focus:border-blue-600 focus:outline-none`}
             id="messageInput"
             rows="3"
             placeholder="Message"
           ></textarea>
+          {errors.msg && (
+            <p className="mt-1 text-sm text-red-500">{errors.msg}</p>
+          )}
         </div>
-        {/* Button with loading state */}
+
         <button
           type="submit"
-          className=" w-full rounded-md bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+          className={`w-full rounded-md px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out ${
+            darkMode
+              ? "bg-blue-600 hover:bg-blue-700"
+              : "bg-blue-500 hover:bg-blue-600"
+          }`}
           onClick={() => sendData()}
           disabled={isSubmitting} // Disable button when submitting
         >
           {isSubmitting ? (
             <div className="flex justify-center">
               <svg
-                className="animate-spin h-5 w-5 text-white"
+                className="h-5 w-5 animate-spin text-white"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"

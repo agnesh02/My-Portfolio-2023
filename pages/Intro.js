@@ -1,10 +1,11 @@
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import { DiReact, DiAndroid, DiDart } from "react-icons/di";
 import Image from "next/image";
-import devImg from "../public/devImg.png";
+import devImg from "../public/devImg2.jpeg";
 import React, { useContext } from "react";
 import AdditionalInfo from "./AdditionalInfo";
 import AppContext from "../state/AppContext";
+import { SiFlutter } from "react-icons/si";
 
 const Intro = function () {
   const { darkMode, setDarkMode, isLargeScreen, setIsLargeScreen } =
@@ -37,17 +38,23 @@ const Intro = function () {
               <h2 className="flex justify-start py-2 font-poppins_medium text-4xl dark:text-white lg:text-5xl">
                 Agnesh S Kumar
               </h2>
-              <p className=" mt-5 font-poppins_light text-xl dark:text-white">
+              <p className="mt-5 font-poppins_light text-xl dark:text-white">
                 Mobile application developer - Native Android, Flutter, React
                 Native.
               </p>
-              <button className=" mt-5 w-32 rounded-md bg-gradient-to-br from-blue-900 to-blue-500 py-1 font-poppins_medium text-white hover:bg-gradient-to-br hover:from-violet-900 hover:to-violet-500">
+              <button className="mt-5 w-32 rounded-md bg-gradient-to-br from-blue-900 to-blue-500 py-1 font-poppins_medium text-white hover:bg-gradient-to-br hover:from-violet-900 hover:to-violet-500">
                 Contact Me
               </button>
             </div>
             <div className="flex justify-center">
-              <div className=" mt-10 h-44 w-44 rounded-full bg-gradient-to-b from-violet-500 to-white lg:mt-0 lg:h-80 lg:w-80">
-                <Image src={devImg} width={300} height={300} />
+              <div className="mt-10 h-52 w-52 overflow-hidden rounded-full lg:mt-0 lg:h-96 lg:w-96">
+                <Image
+                  src={devImg}
+                  width={400}
+                  height={300}
+                  className="object-fill"
+                  alt="Developer Image"
+                />
               </div>
             </div>
           </div>
@@ -67,7 +74,7 @@ const Intro = function () {
         </section>
         <div style={{ height: "3vh" }}></div>
 
-        <section style={{ height: "95vh"}}>
+        <section style={{ height: "95vh" }}>
           <h3 className="mb-12 mt-10 flex flex-col items-center py-2 text-2xl font-semibold text-gray-800 dark:text-white sm:justify-start lg:flex-row lg:justify-center">
             Developer, specialized in
             {!isLargeScreen && <br />}
@@ -81,37 +88,41 @@ const Intro = function () {
             mobile app development.
           </h3>
 
-          <div
-            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 xl:grid-cols-3 xl:gap-12"
-            style={{ marginTop: -20 }}
-          >
-            <div className="flex w-full items-center justify-center rounded-3xl bg-green-500 p-3 py-4 shadow-lg hover:bg-green-700 hover:text-white">
-              <div className="mt-6 flex justify-center text-8xl">
-                <DiAndroid />
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+            <div className="flex w-full items-center justify-center rounded-3xl bg-green-500 p-3 py-4 text-center shadow-lg hover:bg-green-700 hover:text-white">
+              <div className="flex items-center justify-center space-x-4">
+                <div className="text-8xl">
+                  <DiAndroid />
+                </div>
+                <h2 className="font-poppins_semi_bold text-xl font-bold">
+                  Android Apps
+                </h2>
               </div>
-              <h2 className="mb-2 flex justify-center px-6 font-poppins_semi_bold text-xl font-bold">
-                Android Apps
-              </h2>
             </div>
 
-            <div className="flex w-full items-center justify-center rounded-3xl bg-blue-500 p-3 py-4 shadow-lg hover:bg-blue-700 hover:text-white">
-              <div className="mt-6 flex justify-center text-8xl">
-                <DiDart />
+            <div className="flex w-full items-center justify-center rounded-3xl bg-blue-500 p-3 py-4 text-center shadow-lg hover:bg-blue-600 hover:text-white">
+              <div className="flex items-center justify-center space-x-4">
+                <div className="text-8xl">
+                  <SiFlutter />
+                </div>
+                <h2 className="font-poppins_semi_bold text-xl font-bold">
+                  Flutter Apps
+                </h2>
               </div>
-              <h2 className="mb-2 flex justify-center font-poppins_semi_bold text-xl font-bold">
-                Flutter Apps
-              </h2>
             </div>
 
-            <div className="flex w-full items-center justify-center rounded-3xl bg-blue-500 p-3 py-4 shadow-lg hover:bg-blue-700 hover:text-white">
-              <div className="mt-6 flex justify-center text-8xl">
-                <DiReact />
+            <div className="flex w-full items-center justify-center rounded-3xl bg-teal-500 p-3 py-4 text-center shadow-lg hover:bg-teal-600 hover:text-white">
+              <div className="flex items-center justify-center space-x-4">
+                <div className="text-8xl">
+                  <DiReact />
+                </div>
+                <h2 className="font-poppins_semi_bold text-xl font-bold">
+                  React Native Apps
+                </h2>
               </div>
-              <h2 className="mb-2 flex justify-center font-poppins_semi_bold text-xl font-bold">
-                React Native Apps
-              </h2>
             </div>
           </div>
+
           {isLargeScreen && <AdditionalInfo isLargeScreen={isLargeScreen} />}
         </section>
         {!isLargeScreen && (
