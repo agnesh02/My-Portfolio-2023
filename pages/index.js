@@ -30,23 +30,18 @@ const Home = function () {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const downloadResume = function () {
-    // fetch(
-    //   "../public/assets/cloud_college.png"
-    // ) // Replace 'path_to_your_file' with the actual file URL
-    //   .then((response) => response.blob())
-    //   .then((blob) => {
-    //     saveAs(blob, "Resume_Agnesh.pdf"); // Replace 'filename.ext' with the desired file name and extension
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error downloading the file:", error);
-    //   });
+  useEffect(() => {
+    if (window.location.hash === "#contact") {
+      window.history.replaceState(null, null, window.location.pathname);
+      window.scrollTo(0, 0);
+    }
+  }, []);
 
+  const downloadResume = function () {
     const link = document.createElement("a");
     link.href =
       "https://drive.google.com/file/d/1H7leexzj77C2md2vfG9OdlTZDVIB5PkQ/view?usp=sharing";
-    link.download = "agnesh_resume.pdf"; // Specify the desired file name
-
+    link.download = "agnesh_resume.pdf";
     link.dispatchEvent(
       new MouseEvent("click", {
         bubbles: true,
@@ -65,67 +60,72 @@ const Home = function () {
       </Head>
 
       <main className="bg-white px-4 dark:bg-gray-900 lg:px-20">
-        <section className="flex min-h-screen flex-col justify-between ">
-          <nav className="mb-12 flex justify-between py-10 ">
-            <div className="flex w-1/2 flex-row  text-center">
+        <section className="flex min-h-screen flex-col justify-between">
+          <nav className="mb-12 flex rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-4 px-6 shadow-lg">
+            {/* Left-aligned items */}
+            <div className="flex items-center space-x-8 lg:space-x-20">
               {!isLargeScreen && <MobileNav setIsActive={setCurrentPage} />}
               <button
-                className="ml-12 text-start font-poppins_semi_bold text-xl dark:text-white lg:ml-0"
-                onClick={() => {
-                  setCurrentPage(pages.home);
-                }}
+                className="font-poppins_semi_bold text-xl text-white transition duration-300 hover:text-gray-300 lg:text-2xl"
+                onClick={() => setCurrentPage(pages.home)}
               >
                 My Portfolio
               </button>
               {isLargeScreen && (
-                <ul className=" ml-10 flex w-60 flex-row justify-evenly dark:text-white">
-                  <li className="text-x font-poppins_semi_bold dark:text-white">
-                    <button onClick={() => setCurrentPage(pages.certificates)}>
+                <ul className="flex list-none items-center space-x-6 text-white">
+                  <li>
+                    <button
+                      className="font-poppins_semi_bold text-lg transition duration-300 hover:text-yellow-400"
+                      onClick={() => setCurrentPage(pages.certificates)}
+                    >
                       Certificates
                     </button>
                   </li>
-                  <li className="text-x font-poppins_semi_bold dark:text-white">
-                    <button onClick={() => setCurrentPage(pages.projects)}>
+                  <li>
+                    <button
+                      className="font-poppins_semi_bold text-lg transition duration-300 hover:text-red-500"
+                      onClick={() => setCurrentPage(pages.projects)}
+                    >
                       Projects
                     </button>
                   </li>
                 </ul>
               )}
             </div>
-            <ul className=" flex items-center dark:text-white">
-              <li className="text-2xl lg:text-3xl">
+
+            {/* Right-aligned items */}
+            <div className="ml-auto flex items-center space-x-4">
+              <li className="list-none text-2xl lg:text-3xl">
                 {darkMode ? (
-                  <FaSun onClick={() => setDarkMode(!darkMode)} />
+                  <FaSun
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="cursor-pointer text-white transition duration-300 hover:text-gray-300"
+                  />
                 ) : (
-                  <FaMoon onClick={() => setDarkMode(!darkMode)} />
+                  <FaMoon
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="cursor-pointer text-white transition duration-300 hover:text-gray-300"
+                  />
                 )}
               </li>
-              <li>
-                {/* <a
-                  className=" ml-8 rounded-lg bg-gradient-to-r from-violet-500 to-purple-500 px-4 py-2 text-white hover:from-red-600 hover:to-red-500"
-                  href="https://drive.google.com/uc?id=1okf-B-7W9KXgXtGU8aUrM7-5RGym_JCG"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download File
-                </a> */}
-
+              <li className="list-none">
                 <a
-                  className=" ml-8 cursor-pointer rounded-lg bg-gradient-to-r from-violet-500 to-purple-500 px-4 py-2 text-white hover:from-red-600 hover:to-red-500"
-                  onClick={() => {
-                    downloadResume();
-                  }}
+                  className="cursor-pointer rounded-lg bg-gradient-to-r from-violet-500 to-purple-500 px-6 py-2 text-white transition duration-300 hover:from-red-600 hover:to-red-500"
+                  onClick={() => downloadResume()}
                 >
                   Resume
                 </a>
               </li>
-            </ul>
+            </div>
           </nav>
-          {currentPage == pages.home && <Intro />}
-          {currentPage == pages.home && <NodeGraphSkills isLargeScreen={isLargeScreen}/>}
-          {currentPage == pages.home && <Contact />}
-          {currentPage == pages.certificates && <Certificates />}
-          {currentPage == pages.projects && <Projects />}
+
+          {currentPage === pages.home && <Intro />}
+          {currentPage === pages.home && (
+            <NodeGraphSkills isLargeScreen={isLargeScreen} />
+          )}
+          {currentPage === pages.home && <Contact />}
+          {currentPage === pages.certificates && <Certificates />}
+          {currentPage === pages.projects && <Projects />}
         </section>
       </main>
     </div>

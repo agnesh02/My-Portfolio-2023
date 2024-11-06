@@ -71,7 +71,7 @@ const Contact = function () {
   };
 
   return (
-    <section className={`h-screen ${darkMode ? "bg-gray-900" : "bg-white"}`}>
+    <section id="contact" className={`h-screen ${darkMode ? "bg-gray-900" : "bg-white"}`}>
       <div
         className={`mx-auto mt-32 max-w-[700px] rounded-3xl px-5 py-10 ${
           darkMode ? "bg-white" : "bg-gray-100"

@@ -28,7 +28,7 @@ const Intro = function () {
       <main className="bg-white px-4 dark:bg-gray-900 lg:px-80">
         <section
           className="flex h-screen flex-col justify-between lg:pt-28"
-          style={{ height: isLargeScreen ? "80vh" : "72vh" }}
+          style={{ height: isLargeScreen ? "85vh" : "76vh" }}
         >
           <div className="lg:flex  lg:justify-end lg:gap-10">
             <div className="flex flex-col justify-center">
@@ -42,7 +42,10 @@ const Intro = function () {
                 Mobile application developer - Native Android, Flutter, React
                 Native.
               </p>
-              <button className="mt-5 w-32 rounded-md bg-gradient-to-br from-blue-900 to-blue-500 py-1 font-poppins_medium text-white hover:bg-gradient-to-br hover:from-violet-900 hover:to-violet-500">
+              <button
+                className="mt-5 w-32 rounded-md bg-gradient-to-br from-blue-900 to-blue-500 py-1 font-poppins_medium text-white hover:bg-gradient-to-br hover:from-violet-900 hover:to-violet-500"
+                onClick={() => (window.location.href = "#contact")}
+              >
                 Contact Me
               </button>
             </div>

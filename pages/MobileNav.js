@@ -32,7 +32,7 @@ const MobileNav = () => {
   return (
     <div>
       <button
-        className="fixed top-8 left-4 z-10 rounded-lg bg-gray-800 p-2 text-white"
+        className="fixed top-2.5 left-6 z-10 rounded-lg bg-gray-800 p-2 text-white"
         onClick={toggleNav}
       >
         <svg
