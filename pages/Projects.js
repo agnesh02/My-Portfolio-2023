@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "../state/AppContext";
 
 const projects = [
   {
@@ -229,6 +230,7 @@ const Projects = () => {
   });
   const [loadingImage, setLoadingImage] = useState(true);
   const [loadingTechImage, setLoadingTechImage] = useState(true);
+  const { darkMode, isLargeScreen } = useContext(AppContext);
 
   const handlePrev = () => {
     const currentIndex = projects.findIndex(
@@ -289,7 +291,7 @@ const Projects = () => {
   return (
     <div
       className="flex min-h-screen flex-col items-start p-3"
-      style={{ marginTop: -50 }}
+      style={{ marginTop: 10 }}
     >
       <div className="flex min-w-full flex-row items-center justify-between py-6">
         <div className="flex flex-col justify-center">
@@ -354,7 +356,11 @@ const Projects = () => {
         </div>
       </div>
 
-      <div className="mx-auto mt-8 max-w-3xl text-start text-white">
+      <div
+        className={`mx-auto mt-8 max-w-3xl text-start ${
+          darkMode ? "text-white" : "text-black"
+        }`}
+      >
         <h2 className="mb-4 text-3xl font-bold">{currentProject.title}</h2>
         <p className="mb-6 text-lg">{currentProject.description}</p>
 
@@ -427,7 +433,9 @@ const Projects = () => {
                 }}
                 src={technologyUsed.image}
                 alt={technologyUsed.name}
-                className="w-full rounded-lg object-cover"
+                className={`w-full rounded-lg object-cover ${
+                  !darkMode ? "shadow-lg" : ""
+                }`}
                 onLoadingComplete={() => setLoadingTechImage(false)}
               />
             </div>
