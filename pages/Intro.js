@@ -1,15 +1,15 @@
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { DiReact, DiAndroid, DiDart } from "react-icons/di";
+import { DiReact, DiAndroid } from "react-icons/di";
 import Image from "next/image";
 import devImg from "../public/devImg2.jpeg";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AdditionalInfo from "./AdditionalInfo";
 import AppContext from "../state/AppContext";
 import { SiFlutter } from "react-icons/si";
+import { ReactTyped } from "react-typed";
 
 const Intro = function () {
-  const { darkMode, setDarkMode, isLargeScreen, setIsLargeScreen } =
-    useContext(AppContext);
+  const { darkMode, isLargeScreen } = useContext(AppContext);
 
   const goToInstagram = () => {
     window.open("https://instagram.com/agnesh.05?igshid=MzNlNGNkZWQ4Mg==");
@@ -23,6 +23,8 @@ const Intro = function () {
     window.open("https://www.linkedin.com/in/agnesh2002");
   };
 
+  const [typingComplete, setTypingComplete] = useState(false);
+
   return (
     <div className={darkMode ? "dark" : ""}>
       <main className="bg-white px-4 dark:bg-gray-900 lg:px-80">
@@ -30,18 +32,38 @@ const Intro = function () {
           className="flex h-screen flex-col justify-between lg:pt-28"
           style={{ height: isLargeScreen ? "85vh" : "76vh" }}
         >
-          <div className="lg:flex  lg:justify-end lg:gap-10">
+          <div className="lg:flex lg:items-center lg:justify-end lg:gap-10">
+            {/* Left Side - Text Content */}
             <div className="flex flex-col justify-center">
               <h3 className="ml-1 flex justify-start py-2 font-poppins_regular text-2xl dark:text-white lg:text-3xl">
-                Hi, I am
+                <ReactTyped
+                  strings={["Hi, I am"]}
+                  typeSpeed={typingComplete ? 0 : 100}
+                  onComplete={() => setTypingComplete(true)} 
+                  showCursor={typingComplete ? false : true} 
+                />
               </h3>
-              <h2 className="flex justify-start py-2 font-poppins_medium text-4xl dark:text-white lg:text-5xl">
-                Agnesh S Kumar
+
+              <h2
+                id="nameTyped"
+                className="flex justify-start py-2 font-poppins_medium text-4xl dark:text-white lg:text-5xl"
+              >
+                {typingComplete && (
+                  <ReactTyped
+                    strings={["Agnesh S Kumar"]}
+                    typeSpeed={100}
+                    startDelay={800}
+                  />
+                )}
               </h2>
+
+              {/* Description */}
               <p className="mt-5 font-poppins_light text-xl dark:text-white">
                 Mobile application developer - Native Android, Flutter, React
                 Native.
               </p>
+
+              {/* Static Contact Me button */}
               <button
                 className="mt-5 w-32 rounded-md bg-gradient-to-br from-blue-900 to-blue-500 py-1 font-poppins_medium text-white hover:bg-gradient-to-br hover:from-violet-900 hover:to-violet-500"
                 onClick={() => (window.location.href = "#contact")}
@@ -49,7 +71,9 @@ const Intro = function () {
                 Contact Me
               </button>
             </div>
-            <div className="flex justify-center">
+
+            {/* Right Side - Image */}
+            <div className="flex justify-center lg:w-1/2">
               <div className="mt-10 h-52 w-52 overflow-hidden rounded-full lg:mt-0 lg:h-96 lg:w-96">
                 <Image
                   src={devImg}
@@ -63,7 +87,7 @@ const Intro = function () {
           </div>
 
           {/* Social Media Buttons at the bottom */}
-          <div className="flex justify-center gap-4 text-4xl dark:text-white">
+          <div className="mt-8 flex justify-center gap-4 text-4xl dark:text-white">
             <button onClick={() => goToInstagram()}>
               <FaInstagram />
             </button>
@@ -75,8 +99,10 @@ const Intro = function () {
             </button>
           </div>
         </section>
+
         <div style={{ height: "3vh" }}></div>
 
+        {/* Skills Section */}
         <section style={{ height: "95vh" }}>
           <h3 className="mb-12 mt-10 flex flex-col items-center py-2 text-2xl font-semibold text-gray-800 dark:text-white sm:justify-start lg:flex-row lg:justify-center">
             Developer, specialized in
