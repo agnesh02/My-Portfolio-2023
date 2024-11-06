@@ -3,6 +3,8 @@ import Image from "next/image"; // This is the Next.js Image component
 
 const images = [
   "/assets/coursera_1.png",
+  "/assets/udemy_cert.jpg",
+  "/assets/meta_cert.png",
   "/assets/coursera_2.png",
   "/assets/coursera_3.png",
   "/assets/coursera_4.png",
@@ -25,7 +27,9 @@ const Certificates = function () {
 
   const goToPrevSlide = () => {
     setLoading(true); // Start loading when switching images
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   return (
@@ -38,9 +42,9 @@ const Certificates = function () {
         }}
       >
         {loading ? (
-          <div className="flex justify-center items-center w-full h-[500px]">
+          <div className="flex h-[500px] w-full items-center justify-center">
             <svg
-              className="animate-spin h-8 w-8 text-blue-500"
+              className="h-8 w-8 animate-spin text-blue-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
