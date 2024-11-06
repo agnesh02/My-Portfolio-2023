@@ -64,8 +64,8 @@ const Home = function () {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-white px-4 dark:bg-gray-900 lg:px-10">
-        <section className="flex min-h-screen flex-col justify-between">
+      <main className="bg-white px-4 dark:bg-gray-900 lg:px-20">
+        <section className="flex min-h-screen flex-col justify-between ">
           <nav className="mb-12 flex justify-between py-10 ">
             <div className="flex w-1/2 flex-row  text-center">
               {!isLargeScreen && <MobileNav setIsActive={setCurrentPage} />}
@@ -122,8 +122,7 @@ const Home = function () {
             </ul>
           </nav>
           {currentPage == pages.home && <Intro />}
-          {currentPage == pages.home && <NodeGraphSkills />}
-          {currentPage == pages.home && <SkillsSection />}
+          {currentPage == pages.home && <NodeGraphSkills isLargeScreen={isLargeScreen}/>}
           {currentPage == pages.home && <Contact />}
           {currentPage == pages.certificates && <Certificates />}
           {currentPage == pages.projects && <Projects />}

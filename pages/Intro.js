@@ -1,5 +1,5 @@
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-import { DiReact, DiAndroid } from "react-icons/di";
+import { DiReact, DiAndroid, DiDart } from "react-icons/di";
 import Image from "next/image";
 import devImg from "../public/devImg.png";
 import React, { useContext } from "react";
@@ -24,18 +24,22 @@ const Intro = function () {
 
   return (
     <div className={darkMode ? "dark" : ""}>
-      <main className="bg-white px-4 dark:bg-gray-900 lg:px-10">
-        <section>
-          <div className=" lg:flex lg:justify-end lg:gap-32">
-            <div className=" flex flex-col justify-center">
-              <h3 className=" ml-1 flex justify-start py-2 font-poppins_regular text-2xl dark:text-white lg:text-3xl">
+      <main className="bg-white px-4 dark:bg-gray-900 lg:px-80">
+        <section
+          className="flex h-screen flex-col justify-between lg:pt-28"
+          style={{ height: isLargeScreen ? "80vh" : "72vh" }}
+        >
+          <div className="lg:flex  lg:justify-end lg:gap-10">
+            <div className="flex flex-col justify-center">
+              <h3 className="ml-1 flex justify-start py-2 font-poppins_regular text-2xl dark:text-white lg:text-3xl">
                 Hi, I am
               </h3>
-              <h2 className=" mt-_10 flex justify-start py-2 font-poppins_medium text-4xl dark:text-white lg:text-5xl">
+              <h2 className="flex justify-start py-2 font-poppins_medium text-4xl dark:text-white lg:text-5xl">
                 Agnesh S Kumar
               </h2>
               <p className=" mt-5 font-poppins_light text-xl dark:text-white">
-                Mobile application developer - Android, React Native.
+                Mobile application developer - Native Android, Flutter, React
+                Native.
               </p>
               <button className=" mt-5 w-32 rounded-md bg-gradient-to-br from-blue-900 to-blue-500 py-1 font-poppins_medium text-white hover:bg-gradient-to-br hover:from-violet-900 hover:to-violet-500">
                 Contact Me
@@ -47,26 +51,26 @@ const Intro = function () {
               </div>
             </div>
           </div>
-          <div style={{ padding: 95 }}>
-            <h1></h1>
-          </div>
-          <div className=" mt mb-14 flex justify-center gap-7 text-5xl dark:text-white lg:mb-5">
-            <button>
-              <FaInstagram onClick={() => goToInstagram()} />
+
+          {/* Social Media Buttons at the bottom */}
+          <div className="flex justify-center gap-4 text-4xl dark:text-white">
+            <button onClick={() => goToInstagram()}>
+              <FaInstagram />
             </button>
-            <button>
-              <FaGithub onClick={() => gotToGithub()} />
+            <button onClick={() => gotToGithub()}>
+              <FaGithub />
             </button>
-            <button>
-              <FaLinkedin onClick={() => gotToLinkedin()} />
+            <button onClick={() => gotToLinkedin()}>
+              <FaLinkedin />
             </button>
           </div>
         </section>
+        <div style={{ height: "3vh" }}></div>
 
-        <section className="min-h-screen">
-          <h3 className=" mb-12 mt-10 flex flex-col items-center py-2 text-2xl font-semibold text-gray-800 dark:text-white sm:justify-start lg:flex-row lg:justify-center">
+        <section style={{ height: "95vh"}}>
+          <h3 className="mb-12 mt-10 flex flex-col items-center py-2 text-2xl font-semibold text-gray-800 dark:text-white sm:justify-start lg:flex-row lg:justify-center">
             Developer, specialized in
-            {!isLargeScreen && <br></br>}
+            {!isLargeScreen && <br />}
             <span className="text-blue-600 dark:text-green-500">
               &nbsp;native&nbsp;
             </span>
@@ -78,28 +82,43 @@ const Intro = function () {
           </h3>
 
           <div
-            className=" flex flex-col items-center space-y-5 lg:flex lg:flex-row lg:justify-center lg:space-x-5 lg:space-y-0"
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 xl:grid-cols-3 xl:gap-12"
             style={{ marginTop: -20 }}
           >
-            <div className=" w-60 justify-center rounded-3xl bg-green-500 p-3 py-4 shadow-lg hover:bg-green-700 hover:text-white">
-              <div className=" mt-6 flex justify-center text-8xl">
+            <div className="flex w-full items-center justify-center rounded-3xl bg-green-500 p-3 py-4 shadow-lg hover:bg-green-700 hover:text-white">
+              <div className="mt-6 flex justify-center text-8xl">
                 <DiAndroid />
               </div>
-              <h2 className=" mb-2 flex justify-center px-6 font-poppins_semi_bold text-xl font-bold">
+              <h2 className="mb-2 flex justify-center px-6 font-poppins_semi_bold text-xl font-bold">
                 Android Apps
               </h2>
             </div>
-            <div className=" w-60 justify-center rounded-3xl bg-blue-500 p-3 py-4 shadow-lg hover:bg-blue-700 hover:text-white">
-              <div className=" mt-6 flex justify-center text-8xl">
+
+            <div className="flex w-full items-center justify-center rounded-3xl bg-blue-500 p-3 py-4 shadow-lg hover:bg-blue-700 hover:text-white">
+              <div className="mt-6 flex justify-center text-8xl">
+                <DiDart />
+              </div>
+              <h2 className="mb-2 flex justify-center font-poppins_semi_bold text-xl font-bold">
+                Flutter Apps
+              </h2>
+            </div>
+
+            <div className="flex w-full items-center justify-center rounded-3xl bg-blue-500 p-3 py-4 shadow-lg hover:bg-blue-700 hover:text-white">
+              <div className="mt-6 flex justify-center text-8xl">
                 <DiReact />
               </div>
-              <h2 className=" mb-2 flex justify-center font-poppins_semi_bold text-xl font-bold">
+              <h2 className="mb-2 flex justify-center font-poppins_semi_bold text-xl font-bold">
                 React Native Apps
               </h2>
             </div>
           </div>
-          <AdditionalInfo />
+          {isLargeScreen && <AdditionalInfo isLargeScreen={isLargeScreen} />}
         </section>
+        {!isLargeScreen && (
+          <section style={{ height: "100vh" }}>
+            <AdditionalInfo isLargeScreen={isLargeScreen} />
+          </section>
+        )}
       </main>
     </div>
   );
