@@ -66,6 +66,7 @@ const MobileNav = () => {
                 className={itemStyle}
                 onClick={() => {
                   setCurrentPage(pages.home);
+                  setIsOpen(false);
                 }}
               >
                 Home
@@ -79,6 +80,7 @@ const MobileNav = () => {
                 className={itemStyle}
                 onClick={() => {
                   setCurrentPage(pages.certificates);
+                  setIsOpen(false);
                 }}
               >
                 Certificates
@@ -92,6 +94,7 @@ const MobileNav = () => {
                 className={itemStyle}
                 onClick={() => {
                   setCurrentPage(pages.projects);
+                  setIsOpen(false);
                 }}
               >
                 Projects

@@ -44,8 +44,8 @@ const Home = function () {
 
     const link = document.createElement("a");
     link.href =
-      "https://drive.google.com/file/d/1okf-B-7W9KXgXtGU8aUrM7-5RGym_JCG/view?usp=sharing";
-    link.download = "resume.pdf"; // Specify the desired file name
+      "https://drive.google.com/file/d/1H7leexzj77C2md2vfG9OdlTZDVIB5PkQ/view?usp=sharing";
+    link.download = "agnesh_resume.pdf"; // Specify the desired file name
 
     link.dispatchEvent(
       new MouseEvent("click", {
