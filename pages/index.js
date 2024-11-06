@@ -95,7 +95,7 @@ const Home = function () {
 
             {/* Right-aligned items */}
             <div className="ml-auto flex items-center space-x-4">
-              <li className="list-none text-2xl lg:text-3xl">
+              <li className="list-none text-2xl lg:text-3xl lg:mr-5">
                 {darkMode ? (
                   <FaSun
                     onClick={() => setDarkMode(!darkMode)}
